@@ -1,0 +1,21 @@
+<div class="col-md-6 mb-3">
+  <label [attr.for]="inputDef.FieldName">{{ inputDef.Label }}</label>
+  <input
+    [ngIf]="!inputDef.Multiline"
+    [attr.type]="inputDef.InputType"
+    class="form-control"
+    [id]="inputDef.FieldName"
+    [name]="inputDef.FieldName"
+    [placeholder]="inputDef.Placeholder"
+    [(value)]="inputDef.Value"
+  />
+  <textarea
+    [ngIf]="inputDef.Multiline"
+    [id]="inputDef.FieldName"
+    [name]="inputDef.FieldName"
+    [(value)]="inputDef.Value"
+    rows="9"
+    class="form-control"
+    [placeholder]="inputDef.Placeholder"
+  ></textarea>
+</div>

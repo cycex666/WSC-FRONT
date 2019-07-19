@@ -1,0 +1,68 @@
+
+
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="cart-title-box float-left">
+            <span class="badge badge-primary">
+              <i class="p-1 fa fa-2x fa-{{config.icon.name}}"></i>
+            </span>
+            <strong class="h4 ml-1 text-uppercase">{{config.header}}</strong>
+          </div>
+          <div class="card-header-actions">
+            <button class="card-header-action btn btn-link btn-close" type="button"><i class="icon-close"></i></button>
+          </div>
+        </div>
+        <div class="card-actions">
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button class="service-button" type="button">
+              <i class="fa fa-plus"></i>
+              Dodaj
+            </button>
+            <button class="service-button" type="button">
+              <i class="fa fa-user"></i>
+              Left
+            </button>
+            <button class="service-button" type="button">
+              <i class="fa fa-user"></i>
+              Left
+            </button>
+          </div>
+        </div>
+        <div class="card-body service-grid-container">
+          <p-table [columns]="config.columns"
+                   [value]="config.dataSource"
+                   [paginator]="true"
+                   [rows]="10"
+                   [responsive]="true"
+                   selectionMode="single"
+                   dataKey="Id"
+                   [(selection)]="config.currentSelection"
+                   >
+            <ng-template pTemplate="header" let-columns="config.columns">
+              <tr>
+                <th *ngFor="let column of config.columns" [pSortableColumn]="column.sort ? column.sourceProperty : null">
+                  {{column.header}}
+                  <p-sortIcon *ngIf="column.sort" [field]="column.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-sourceElement let-columns="config.columns">
+              <tr [pSelectableRow]="rowData">
+                <td *ngFor="let column of config.columns">
+                  {{sourceElement[column.sourceProperty]}}
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="card-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

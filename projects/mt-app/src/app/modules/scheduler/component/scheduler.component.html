@@ -1,0 +1,51 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <div class="cart-title-box float-left">
+            <span class="badge badge-primary">
+              <i class="p-1 fa fa-2x fa-calendar"></i>
+            </span>
+            <strong class="h4 ml-1 text-uppercase">Scheduler</strong>
+          </div>
+          <div class="card-header-actions">
+            <button class="card-header-action btn btn-link btn-close" type="button"><i class="icon-close"></i></button>
+          </div>
+        </div>
+        <div class="card-actions">
+          <div class="row">
+            <div class="col-8">
+              <div class="btn-group pull-left" role="group" aria-label="Basic example">
+                <button class="service-button" type="button">
+                  <i class="fa fa-plus"></i>
+                  Dodaj
+                </button>
+                <button class="service-button" type="button">
+                  <i class="fa fa-user"></i>
+                  Left
+                </button>
+                <button class="service-button" type="button">
+                  <i class="fa fa-user"></i>
+                  Left
+                </button>
+              </div>
+            </div>
+            <div class="col-4">
+              <input class="form-control" id="name" type="text" placeholder="Search">
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <mwl-calendar-month-view [viewDate]="viewDate"
+                                   [refresh]="refresh"
+                                   [activeDayIsOpen]="activeDayIsOpen">
+          </mwl-calendar-month-view>
+        </div>
+        <div class="card-footer">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

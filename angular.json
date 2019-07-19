@@ -1,0 +1,174 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "mt-core-lib": {
+      "root": "projects/mt-core-lib",
+      "sourceRoot": "projects/mt-core-lib/src",
+      "projectType": "library",
+      "prefix": "mt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/mt-core-lib/tsconfig.lib.json",
+            "project": "projects/mt-core-lib/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mt-core-lib/src/test.ts",
+            "tsConfig": "projects/mt-core-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/mt-core-lib/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mt-core-lib/tsconfig.lib.json",
+              "projects/mt-core-lib/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mt-app": {
+      "root": "projects/mt-app/",
+      "sourceRoot": "projects/mt-app/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/mt-app",
+            "index": "projects/mt-app/src/index.html",
+            "main": "projects/mt-app/src/main.ts",
+            "polyfills": "projects/mt-app/src/polyfills.ts",
+            "tsConfig": "projects/mt-app/tsconfig.app.json",
+            "assets": [
+              "projects/mt-app/src/favicon.ico",
+              "projects/mt-app/src/assets"
+            ],
+            "styles": [
+              "node_modules/@coreui/icons/css/coreui-icons.css",
+              "node_modules/flag-icon-css/css/flag-icon.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/simple-line-icons/css/simple-line-icons.css",
+              "projects/mt-app/src/scss/style.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/mt-app/src/environments/environment.ts",
+                  "with": "projects/mt-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "mt-app:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "mt-app:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "mt-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/mt-app/src/test.ts",
+            "polyfills": "projects/mt-app/src/polyfills.ts",
+            "tsConfig": "projects/mt-app/tsconfig.spec.json",
+            "karmaConfig": "projects/mt-app/karma.conf.js",
+            "styles": [
+              "projects/mt-app/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/mt-app/src/favicon.ico",
+              "projects/mt-app/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/mt-app/tsconfig.app.json",
+              "projects/mt-app/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "mt-app-e2e": {
+      "root": "projects/mt-app-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/mt-app-e2e/protractor.conf.js",
+            "devServerTarget": "mt-app:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "mt-app:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/mt-app-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "mt-core-lib"
+}

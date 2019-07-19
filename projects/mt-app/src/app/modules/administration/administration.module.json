@@ -1,0 +1,12 @@
+{
+  "$schema": "./projects/mt-ng-core/src/lib/json-schemas/nav-menu-schema.json",
+  "groups": [
+    {
+      "groupName": "",
+      "orderId": 1,
+      "elements": [
+        { }
+      ]
+    }
+  ]
+}
